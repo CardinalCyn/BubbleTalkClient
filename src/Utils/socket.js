@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-const socket= io('https://192.168.1.192:5000',{
+const socket= io(process.env.REACT_APP_SERVER_API_URL,{
     secure:true
 });
 export const connected=(username)=>{
