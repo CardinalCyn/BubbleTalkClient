@@ -4,7 +4,7 @@ axios.defaults.withCredentials=true;
 
 export const loginRequest=(username,password,staySignedIn)=>{
     return new Promise((resolve,reject)=>{
-        axios.post("https://192.168.1.192:5000/login",{username:username,password:password,staySignedIn:staySignedIn}).then((response)=>{
+        axios.post(process.env.REACT_APP_SERVER_API_URL+"/login",{username:username,password:password,staySignedIn:staySignedIn}).then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             return reject(err);
@@ -14,7 +14,7 @@ export const loginRequest=(username,password,staySignedIn)=>{
 
 export const registerRequest=(email,username,password,staySignedIn)=>{
     return new Promise((resolve,reject)=>{
-        axios.post("https://192.168.1.192:5000/register",{email:email,username:username,password:password,staySignedIn:staySignedIn}).then((response)=>{
+        axios.post(process.env.REACT_APP_SERVER_API_URL+"/register",{email:email,username:username,password:password,staySignedIn:staySignedIn}).then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             return reject(err);
@@ -23,8 +23,9 @@ export const registerRequest=(email,username,password,staySignedIn)=>{
 }
 
 export const checkSession=()=>{
+    console.log(process.env.REACT_APP_SERVER_API_URL);
     return new Promise((resolve,reject)=>{
-        axios.get("https://192.168.1.192:5000/checkSession").then((response)=>{
+        axios.get(process.env.REACT_APP_SERVER_API_URL+"/checkSession").then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             return reject(err);
@@ -34,7 +35,7 @@ export const checkSession=()=>{
 
 export const getAboutMeBio=(username)=>{
     return new Promise((resolve,reject)=>{
-        axios.get("https://192.168.1.192:5000/aboutMeBio",{params:{username:username}}).then((response)=>{
+        axios.get(process.env.REACT_APP_SERVER_API_URL+"/aboutMeBio",{params:{username:username}}).then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             return reject(err);
@@ -44,7 +45,7 @@ export const getAboutMeBio=(username)=>{
 
 export const postAboutMeBio=(username,aboutMeBio)=>{
     return new Promise((resolve,reject)=>{
-        axios.post("https://192.168.1.192:5000/aboutMeBioUpload",{username:username,aboutMeBio:aboutMeBio}).then((response)=>{
+        axios.post(process.env.REACT_APP_SERVER_API_URL+"/aboutMeBioUpload",{username:username,aboutMeBio:aboutMeBio}).then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             return reject(err);
@@ -53,7 +54,7 @@ export const postAboutMeBio=(username,aboutMeBio)=>{
 }
 export const checkValidProfile=(username)=>{
     return new Promise((resolve,reject)=>{
-        axios.post("https://192.168.1.192:5000/checkValidProfile",{username:username}).then((response)=>{
+        axios.post(process.env.REACT_APP_SERVER_API_URL+"/checkValidProfile",{username:username}).then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             return reject(err);
@@ -63,7 +64,7 @@ export const checkValidProfile=(username)=>{
 
 export const uploadProfilePicture=(image)=>{
     return new Promise((resolve,reject)=>{
-        axios.post("https://192.168.1.192:5000/profilePictureUpload",image).then((response)=>{
+        axios.post(process.env.REACT_APP_SERVER_API_URL+"/profilePictureUpload",image).then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             console.log(err);
@@ -74,7 +75,7 @@ export const uploadProfilePicture=(image)=>{
 
 export const getProfilePicture=(profileName)=>{
     return new Promise((resolve,reject)=>{
-        axios.get("https://192.168.1.192:5000/profilePicture",{params:{username:profileName}}).then((response)=>{
+        axios.get(process.env.REACT_APP_SERVER_API_URL+"/profilePicture",{params:{username:profileName}}).then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             return reject(err);
@@ -84,7 +85,7 @@ export const getProfilePicture=(profileName)=>{
 
 export const createGroupRoomRequest=(roomName)=>{
     return new Promise((resolve,reject)=>{
-        axios.post("https://192.168.1.192:5000/createRoom",{roomName:roomName,roomType:'group'}).then((response)=>{
+        axios.post(process.env.REACT_APP_SERVER_API_URL+"/createRoom",{roomName:roomName,roomType:'group'}).then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             return reject(err);
@@ -94,7 +95,7 @@ export const createGroupRoomRequest=(roomName)=>{
 
 export const createDirectMessageRequest=(userToDM)=>{
     return new Promise((resolve,reject)=>{
-        axios.post('https://192.168.1.192:5000/createDirectMessageRoom',{userToDM}).then((response)=>{
+        axios.post(process.env.REACT_APP_SERVER_API_URL+"/createDirectMessageRoom",{userToDM}).then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             return reject(err);
@@ -104,7 +105,7 @@ export const createDirectMessageRequest=(userToDM)=>{
 
 export const joinRoomRequest=(roomLink)=>{
     return new Promise((resolve,reject)=>{
-        axios.post("https://192.168.1.192:5000/joinRoom",{roomLink:roomLink}).then((response)=>{
+        axios.post(process.env.REACT_APP_SERVER_API_URL+"/joinRoom",{roomLink:roomLink}).then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             return reject(err);
@@ -113,7 +114,7 @@ export const joinRoomRequest=(roomLink)=>{
 }
 export const leaveRoomRequest=(roomLink)=>{
     return new Promise((resolve,reject)=>{
-        axios.post("https://192.168.1.192:5000/leaveRoom",{roomLink:roomLink}).then((response)=>{
+        axios.post(process.env.REACT_APP_SERVER_API_URL+"/leaveRoom",{roomLink:roomLink}).then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             return reject(err);
@@ -122,7 +123,7 @@ export const leaveRoomRequest=(roomLink)=>{
 }
 export const getUserRooms=()=>{
     return new Promise((resolve,reject)=>{
-        axios.get("https://192.168.1.192:5000/getUserRooms").then((response)=>{
+        axios.get(process.env.REACT_APP_SERVER_API_URL+"/getUserRooms").then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             return reject(err);
@@ -131,7 +132,7 @@ export const getUserRooms=()=>{
 }
 export const getMessages=(roomLink,offset)=>{
     return new Promise((resolve,reject)=>{
-        axios.get(`https://192.168.1.192:5000/getMessages/${roomLink}/${offset}/`).then((response)=>{
+        axios.get(process.env.REACT_APP_SERVER_API_URL+`/getMessages/${roomLink}/${offset}/`).then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             return reject(err);
@@ -141,7 +142,7 @@ export const getMessages=(roomLink,offset)=>{
 
 export const logoutRequest=()=>{
     return new Promise((resolve,reject)=>{
-        axios.get("https://192.168.1.192:5000/logout").then((response)=>{
+        axios.get(process.env.REACT_APP_SERVER_API_URL+"/logout").then((response)=>{
             return resolve(response.data);
         }).catch((err)=>{
             return reject(err);
