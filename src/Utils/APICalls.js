@@ -23,7 +23,6 @@ export const registerRequest=(email,username,password,staySignedIn)=>{
 }
 
 export const checkSession=()=>{
-    console.log(process.env.REACT_APP_SERVER_API_URL);
     return new Promise((resolve,reject)=>{
         axios.get(process.env.REACT_APP_SERVER_API_URL+"/checkSession").then((response)=>{
             return resolve(response.data);
